@@ -1,9 +1,9 @@
 # 📊 Сurrency rate on Django
 
-## Preview
+## 🖼 Preview
 ![Preview](https://i.imgur.com/wew5IrJ.png)
 
-## Setup
+## ⚙ Setup
 ```bash
 git clone https://github.com/lep0n/currency-rate.git
 
