@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="card box-shadow m-auto form-wrap">
+        <div class="card-header text-center">
+            <h3>Конвертер валют </h3>
+        </div>
+        <form id="form" class="p-3" action='' method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="from_curr" class="text-muted">Отдаю</label>
+                    <select class="form-control" id="from_curr" name="from-curr" value="{{ from_curr }}">
+                        {% for curr in currencies %}
+                            <option value="{{ curr }}" {% if from_curr == curr %}selected{% endif %}>{{ curr }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="to-curr" class="text-muted">Получаю</label>
+                    <select class="form-control" id="to-curr" name="to-curr" value="{{ to_curr }}">
+                        {% for curr in currencies %}
+                            <option value="{{ curr }}" {% if to_curr == curr %}selected{% endif %}>{{ curr }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="form-group col-md-6 mb-2">
+                    <input id="amount" type="number" step="0.01" min="0" class="form-control" placeholder="Введите число" {% if from_amount %} value="{{ from_amount }}" {% endif %} name="amount">
+                </div>
+                <div class="form-group col-md-6 mb-4">
+                    <input class="form-control" {% if converted %} value="{{ converted }}" {% endif %} readonly>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Конвертировать</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
